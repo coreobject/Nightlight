@@ -28,7 +28,7 @@ void loop() {
   } else if (touchVar < 1000){
     touched = 0;
   }
-  debug(touchVar); // call the function "debug" with the argument touchVar
+  debug(touched); // call the function "debug" with the argument touchVar
   logic(); // call the function "logic"
   fade(); // call the function "fade"
   display(); // call the function "display"
