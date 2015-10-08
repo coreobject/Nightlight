@@ -1,4 +1,19 @@
 int logic() {
+
+switch (stateVar) {
+  case (0): // daytime and lights are off
+    if (touched == 1) {
+      stateVar = 1;
+    }
+    //break;
+  case (1): // touched
+      lightVar = 1;
+      break;
+}
+
+
+
+  
   int currentTime = millis(); //check the time
   if (currentTime - prevTime >= interval) { // if enough has gone by:
     ledFade[i] = 60; // set one of the leds to 255

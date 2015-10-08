@@ -10,6 +10,8 @@ int interval = 500; // length of time for logic time
 int fadeSpeed = 5; // length of time for when to change the fade out of the led
 int prevFadeTime; // a variable for the fade timing
 int touched;
+int stateVar;
+int lightVar;
 
 void setup() {
   for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
