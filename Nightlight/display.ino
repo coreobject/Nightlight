@@ -11,10 +11,11 @@ int fade() { // a function to reduce the brightness of leds so they fade out.
 }
 
 int debug(int x) { // receive a variable when called and put it into "x"
-  if (x >= 600) { 
-    digitalWrite(ledPin, HIGH);
+  Serial.println(x);
+  if (touched == 1) {
+    digitalWrite(13, HIGH);
   } else {
-    digitalWrite(ledPin, LOW);
+    digitalWrite(13, LOW);
   }
 }
 

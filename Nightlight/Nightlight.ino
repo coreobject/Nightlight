@@ -9,6 +9,7 @@ int prevTime; // a variable for the logic timing
 int interval = 500; // length of time for logic time
 int fadeSpeed = 5; // length of time for when to change the fade out of the led
 int prevFadeTime; // a variable for the fade timing
+int touched;
 
 void setup() {
   for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
@@ -20,6 +21,11 @@ void setup() {
 
 void loop() {
   int  touchVar = touchSense(); // call the function "touchSense" and put the result in touchVar
+  if (touchVar >= 1000 && touched == 0) {
+    touched = 1;
+  } else if (touchVar < 1000){
+    touched = 0;
+  }
   debug(touchVar); // call the function "debug" with the argument touchVar
   logic(); // call the function "logic"
   fade(); // call the function "fade"
