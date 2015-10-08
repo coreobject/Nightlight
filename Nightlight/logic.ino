@@ -7,7 +7,7 @@ int logic() {
         stateVar = 1;
         touched = 2;
       }
-    //break;
+    break;
     case (1): // touched
     lightVar = 1;
       if (touched == 1) {

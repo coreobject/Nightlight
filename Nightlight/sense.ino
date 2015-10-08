@@ -4,3 +4,8 @@ int touchSense(){ // a function to check the touch sensor and return the result
   return result;
 }
 
+int darkSense(){
+  int result = analogRead(A0);
+  return result;
+}
+

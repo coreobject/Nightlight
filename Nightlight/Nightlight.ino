@@ -22,6 +22,7 @@ void setup() {
 }
 
 void loop() {
+  int darkVar = darkSense();
   int  touchVar = touchSense(); // call the function "touchSense" and put the result in touchVar
   if (touchVar >= 1000 && touched == 0) {
     touched = 1;
@@ -39,6 +40,10 @@ void loop() {
   Serial.print("\ttouched =\t");
   Serial.print(touched);
   Serial.print("\tlightVar =\t");
-  Serial.println(lightVar);
+  Serial.print(lightVar);
+    Serial.print("\ttouchVar =\t");
+  Serial.print(touchVar);
+      Serial.print("\tdarkVar =\t");
+  Serial.println(darkVar);
 }
 
