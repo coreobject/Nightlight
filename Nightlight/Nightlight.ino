@@ -28,9 +28,17 @@ void loop() {
   } else if (touchVar < 1000){
     touched = 0;
   }
-  debug(touched); // call the function "debug" with the argument touchVar
+  debug(lightVar); // call the function "debug" with the argument touchVar
   logic(); // call the function "logic"
   fade(); // call the function "fade"
   display(); // call the function "display"
+
+  Serial.print("stateVar =\t");
+  
+  Serial.print(stateVar);
+  Serial.print("\ttouched =\t");
+  Serial.print(touched);
+  Serial.print("\tlightVar =\t");
+  Serial.println(lightVar);
 }
 
