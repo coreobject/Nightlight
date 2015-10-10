@@ -11,6 +11,7 @@ Design Criteria:
 
 [Emerging Objects | Flickr - Photo Sharing!] (https://www.flickr.com/photos/sparkle_labs/albums/72157633249013685)
 
+- [CapSense Library Reference](http://playground.arduino.cc//Main/CapacitiveSensor?from=Main.CapSense "Arduino Playground - CapacitiveSensor")
 **Form:**
 3”x3”x3” cube laser cut acrylic
 
@@ -19,9 +20,9 @@ Design Criteria:
 + Capacitive touch sensor [Arduino Playground - InterfacingWithHardware] (http://playground.arduino.cc/Main/InterfacingWithHardware#capsens)
 + Light Sensor
 
-**Output:** 1-6 LEDs
+##Output:** 1-6 LEDs
 
-**Parts List:**
+##Parts List:**
 
 1. 10kΩ
 2. 1MΩ
@@ -36,3 +37,58 @@ Design Criteria:
 
 ![minibreadboard](minibreadboard.jpg)
 ![image] (acryliccement.jpg)
+		```
+		//
+		//        +-----------+
+		//  +-----> LIGHT OFF <---------------------------+
+		//  |     +-----+-----+                           |
+		//  |           |                                 |
+		//  |           |                                 |
+		//  |     +-----V-----+        +----------+       |
+		//  |     |   IS IT   |        |  TOUCH   |       |
+		//  |     |           |---NO--->          |--NO--->
+		//  |     |   DARK?   |        |  SENSOR  |       |
+		//  |     +-----+-----+        +-----+----+       |
+		//  |           |                    |            |
+		//  |           |                   YES           |
+		//  |          YES                   |            |
+		//  |           |                    |            |
+		//  |           <--------------------+            |
+		//  |     +-----V-----+                           |
+		//  |     | LIGHTS ON <--------------+            |
+		//  |     +-----+-----+              |            |
+		//  |           |                    |            |
+		//  |           |                   NO            |
+		//  |           |                    |            |
+		//  |     +-----V-----+        +-----+----+       |
+		//  |     |   IS IT   |        |  TOUCH   |       |
+		//  +-----|           |--YES--->          |--YES--+
+		//        |   DARK?   |        |  SENSOR  |
+		//        +-----------+        +----------+
+		//
+		```
+//    Final Circuit
+//                                      +--------+
+//                                      | TOUCH  |
+//                                      | SENSOR |
+//                                      |      | |
+//                                      +------+ |
+//                 ARDUINO                       |
+//              +-----------+                    |
+//              |        GND|-----------------+  |
+//              |           |                 |  |
+//              |         13|-[R220]--[LED>]--O  |
+//              |         12|                 |  |
+//              |        ~11|-[R220]--[LED>]--O  |
+//              |        ~10|-[R220]--[LED>]--O  |
+//  +--[PHOTO]--|5V       ~9|-[R220]--[LED>]--O  |
+//  |           |GND       8|                 |  |
+//  O---[R10K]--|GND       7|                 |  |
+//  |           |         ~6|-[R220]--[LED>]--O  |
+//  +-----------|A0       ~5|-[R220]--[LED>]--O  |
+//              |A1        4|----[R1M]--------+--O
+//              |A2       ~3|-[R220]--[LED>]--+  |
+//              |A3        2|--------------------+
+//              |A4        1|
+//              +-----------+
+//
