@@ -37,6 +37,7 @@ Design Criteria:
 
 ![minibreadboard](minibreadboard.jpg)
 ![image] (acryliccement.jpg)
+
 ```
 //
 //        +-----------+
