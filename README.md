@@ -8,3 +8,31 @@ Design Criteria:
  + Appearance
  + Construction
  + Interactivity / usability
+
+[Emerging Objects | Flickr - Photo Sharing!] (https://www.flickr.com/photos/sparkle_labs/albums/72157633249013685)
+
+**Form:**
+3”x3”x3” cube laser cut acrylic
+
+**Input:**
+
++ Capacitive touch sensor [Arduino Playground - InterfacingWithHardware] (http://playground.arduino.cc/Main/InterfacingWithHardware#capsens)
++ Light Sensor
+
+**Output:** 1-6 LEDs
+
+**Parts List:**
+
+1. 10kΩ
+2. 1MΩ
+3. Resistors for LEDs. ~100Ω - 220Ω
+4. Mini Breadboard
+5. Arduino UNO
+6. LEDs
+7. Photoresistor
+8. Length of wire (22 gauge) for capacitive touch sensor
+9. Acrylic to create enclosure
+8. Acrylic cement and applicator
+
+![minibreadboard](minibreadboard.jpg)
+![image] (acryliccement.jpg)
