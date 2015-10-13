@@ -1,8 +1,10 @@
 #include <CapacitiveSensor.h> // the capacitive sensor library
 CapacitiveSensor   cs_4_2 = CapacitiveSensor(4, 2); //setup pins 4 and 2 for the sensor. 2 has the probe.
 int leds[] = { 3, 5, 6, 9, 10, 11}; // array of all the pwm pins
+byte ledsVal[] = {10, 60, 120, 160, 200, 255};
+byte ledsDir[] = {0, 1, 2, 1, 1, 2};
+int fadePreviousMillis;
 int pinCount = 6; // how many pwm pins
-int ledFade[6]; // an array to hold the fade values for the leds
 int ledPin = 13; // use the Arduino's built-in led for debugging
 int i; // a variable later use in the logic
 int prevTime; // a variable for the logic timing
@@ -15,25 +17,25 @@ int lightVar;
 int darkVar;
 
 void setup() {
-    for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
-        pinMode(leds[thisPin], OUTPUT);
-    }
-    pinMode(ledPin, OUTPUT); // set the debug led to output
-    Serial.begin(9600);
-    Serial.println();
-    debug();
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
+    pinMode(leds[thisPin], OUTPUT);
+  }
+  pinMode(ledPin, OUTPUT); // set the debug led to output
+  Serial.begin(9600);
+  Serial.println();
+  debug();
 }
 
 void loop() {
-    darkVar = darkSense();
-    touched = touchSense(touched); // call the function "touchSense" and put the result in touched
-    Serial.println("touchSense");
-    debug();
-    logic(); // call the function "logic"
-    Serial.println("logic");
-    debug();
-    fade(); // call the function "fade"
-    display(); // call the function "display"
+  darkVar = darkSense();
+  touchSense(); // call the function "touchSense" and put the result in touched
+
+  logic(); // call the function "logic"
+
+//  debug();
+  //fade(); // call the function "fade"
+  pulseLED();
+  // display(); // call the function "display"
 
 }
 
