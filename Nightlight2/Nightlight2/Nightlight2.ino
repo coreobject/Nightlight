@@ -20,15 +20,20 @@ void setup() {
     }
     pinMode(ledPin, OUTPUT); // set the debug led to output
     Serial.begin(9600);
+    Serial.println();
+    debug();
 }
 
 void loop() {
     darkVar = darkSense();
     touched = touchSense(touched); // call the function "touchSense" and put the result in touched
+    Serial.println("touchSense");
+    debug();
     logic(); // call the function "logic"
+    Serial.println("logic");
+    debug();
     fade(); // call the function "fade"
     display(); // call the function "display"
-    debug();
 
 }
 

@@ -1,5 +1,4 @@
 int logic() {
-
   switch (stateVar) {
     case (0): // daytime and lights are off
     lightVar = 0;
