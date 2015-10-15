@@ -4,7 +4,7 @@ CapacitiveSensor   cs_4_2 = CapacitiveSensor(4, 2); //setup pins 4 and 2 for the
 
 // Set up LED display
 int ledState;
-int ledSpeed = 6000; // Speed at which the LEDs animate.
+int ledSpeed = 600; // Speed at which the LEDs animate.
 byte maxBrightness = 255; // Maximum brightness for LEDs.
 byte ledsVal[] = {0, 0, 0, 0, 0, 0}; // The brightness value of all of the pins.
 byte ledsDir[] = {0, 0, 0, 0, 0, 0};
@@ -51,10 +51,7 @@ void loop() {
   darkVar = darkSense();
   touchSense(); // call the function "touchSense" and put the result in touched
   logic(); // call the function "logic"
-// debug();
-  fade(); // call the function "fade"
-  pulseLED();
-  // display(); // call the function "display"
-
+  anime01(); // call the function "fade"
+  updateLED();
 }
 

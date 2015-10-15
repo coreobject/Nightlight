@@ -1,4 +1,4 @@
-int fade() { // a function to reduce the brightness of leds so they fade out.
+int anime01() { // a function to reduce the brightness of leds so they fade out.
     int currentTime = millis(); // check the time
     if (currentTime - prevLedTime >= ledSpeed) { //if enough time has gone by:
         ledsDir[ledState] = 0;
@@ -27,7 +27,7 @@ int display() { // send the ledFade amount to each of the leds
     }
 }
 
-int pulseLED() {
+int updateLED() {
     unsigned long currentMillis = millis();
     if (currentMillis - fadePreviousMillis >= fadeSpeed) {
         for (int i = 0; i < pinCount; i++) {
