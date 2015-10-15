@@ -7,6 +7,8 @@ int ledState;
 int ledSpeed = 600; // Speed at which the LEDs animate.
 byte maxBrightness = 255; // Maximum brightness for LEDs.
 byte ledsVal[] = {0, 0, 0, 0, 0, 0}; // The brightness value of all of the pins.
+byte ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
+byte ledsDecay[] = {1,1,1,1,1,1}; // and decrease
 byte ledsDir[] = {0, 0, 0, 0, 0, 0};
 /*
  * You can set a behavior for an LED.
@@ -22,7 +24,7 @@ byte ledsDir[] = {0, 0, 0, 0, 0, 0};
 
  // Variables for writing to the LEDs. You should not need to change these:
 int leds[] = { 3, 5, 6, 9, 10, 11}; // array of all the pwm pins
-int fadeSpeed = 0; // length of time for when to change the fade out of the led
+int fadeSpeed = 1; // length of time for when to change the fade out of the led
 int fadePreviousMillis;
 int pinCount = 6; // how many pwm pins
 int ledPin = 13; // use the Arduino's built-in led for debugging
@@ -33,7 +35,7 @@ int i; // a variable later use in the logic
 int prevTime; // a variable for the logic timing
 int interval = 500; // length of time for logic time
 int touched;
-int stateVar;
+int stateVar = 1;
 int lightVar;
 int darkVar;
 

@@ -33,7 +33,7 @@ int updateLED() {
         for (int i = 0; i < pinCount; i++) {
             switch (ledsDir[i]) {
                 case 0: // stay at 0 or fade down to 0
-                    if (ledsVal[i] > 0) ledsVal[i]--;
+                    if (ledsVal[i] > 0) ledsVal[i] = ledsVal[i] - ledsDecay[i];
                     break;
                 case 1: // fading up and down - up
                     ledsVal[i]++;
@@ -44,7 +44,7 @@ int updateLED() {
                     if (ledsVal[i] <= 0) ledsDir[i] = 1;
                     break;
                 case 3: // stay at 255 or fade up to 255
-                    if (ledsVal[i] < 255) ledsVal[i]++;
+                    if (ledsVal[i] < 255) ledsVal[i] = ledsVal[i] + ledsAttack[i];
                     break;
                 default:
                     Serial.println("default");
