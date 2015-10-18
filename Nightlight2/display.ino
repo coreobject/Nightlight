@@ -17,44 +17,52 @@ int debug() { // receive a variable when called and put it into "x"
     Serial.print("\tlightVar =\t");
     Serial.print(lightVar);
     Serial.print("\tdarkVar =\t");
-    Serial.print(darkVar);
+    Serial.print(darkState);
     Serial.println();
 }
-
-int display() { // send the ledFade amount to each of the leds
-    for (int n = 0; n < 6; n++) {
-        analogWrite(leds[n], ledsVal[n]);
-    }
-}
-
+/*
+   int display() { // send the ledFade amount to each of the leds
+   for (int n = 0; n < 6; n++) {
+   analogWrite(leds[n], ledsVal[n]);
+   }
+   }
+ */
 int updateLED() {
-    unsigned long currentMillis = millis();
-    if (currentMillis - fadePreviousMillis >= fadeSpeed) {
-        for (int i = 0; i < pinCount; i++) {
-            switch (ledsDir[i]) {
-                case 0: // stay at 0 or fade down to 0
-                    if (ledsVal[i] > 0) ledsVal[i] = ledsVal[i] - ledsDecay[i];
-                    break;
-                case 1: // fading up and down - up
-                    ledsVal[i]++;
-                    if (ledsVal[i] >= 255) ledsDir[i] = 2;
-                    break;
-                case 2: // fading up and down - down
-                    ledsVal[i]--;
-                    if (ledsVal[i] <= 0) ledsDir[i] = 1;
-                    break;
-                case 3: // stay at 255 or fade up to 255
-                    if (ledsVal[i] < 255) ledsVal[i] = ledsVal[i] + ledsAttack[i];
-                    break;
-                default:
-                    Serial.println("default");
-                    break;
-            }
-            int x = map(ledsVal[i], 0, 255, 0, maxBrightness);
-            analogWrite(leds[i], x);
-            Serial.println(ledsVal[1]);
-            fadePreviousMillis = currentMillis;
-        }
+    switch (lightVar) {
+        case (0):
+            if (maxBrightness > 0) maxBrightness--;
+            break;
+        case (1):
+            if (maxBrightness < 255) maxBrightness++;
+            break;
     }
-}
+            unsigned long currentMillis = millis();
+            if (currentMillis - fadePreviousMillis >= fadeSpeed) {
+                for (int i = 0; i < pinCount; i++) {
+                    switch (ledsDir[i]) {
+                        case 0: // stay at 0 or fade down to 0
+                            if (ledsVal[i] > 0) ledsVal[i] = ledsVal[i] - ledsDecay[i];
+                            break;
+                        case 1: // fading up and down - up
+                            ledsVal[i]++;
+                            if (ledsVal[i] >= 255) ledsDir[i] = 2;
+                            break;
+                        case 2: // fading up and down - down
+                            ledsVal[i]--;
+                            if (ledsVal[i] <= 0) ledsDir[i] = 1;
+                            break;
+                        case 3: // stay at 255 or fade up to 255
+                            if (ledsVal[i] < 255) ledsVal[i] = ledsVal[i] + ledsAttack[i];
+                            break;
+                        default:
+                            Serial.println("default");
+                            break;
+                    }
+                    int x = map(ledsVal[i], 0, 255, 0, maxBrightness);
+                    analogWrite(leds[i], x);
+                    Serial.println(x);
+                    fadePreviousMillis = currentMillis;
+                }
+            }
+    }
 

@@ -1,12 +1,17 @@
 // Set up capacitive sensor
 #include <CapacitiveSensor.h> // the capacitive sensor library
 CapacitiveSensor   cs_4_2 = CapacitiveSensor(4, 2); //setup pins 4 and 2 for the sensor. 2 has the probe.
+long touchThreshold = 1000; // What the touch sensor must pass to register a touch.
+
+// Set up the photo sensor
+int darkState;
+int darkThreshold = 400;
 
 // Set up LED display
 int ledState;
 int ledSpeed = 600; // Speed at which the LEDs animate.
-byte maxBrightness = 255; // Maximum brightness for LEDs.
-byte ledsVal[] = {0, 0, 0, 0, 0, 0}; // The brightness value of all of the pins.
+byte maxBrightness = 0; // Maximum brightness for LEDs.
+byte ledsVal[] = {255, 255, 255, 255, 255, 255}; // The brightness value of all of the pins.
 byte ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
 byte ledsDecay[] = {1,1,1,1,1,1}; // and decrease
 byte ledsDir[] = {0, 0, 0, 0, 0, 0};
@@ -35,9 +40,8 @@ int i; // a variable later use in the logic
 int prevTime; // a variable for the logic timing
 int interval = 500; // length of time for logic time
 int touched;
-int stateVar = 1;
-int lightVar;
-int darkVar;
+int stateVar;
+boolean lightVar;
 
 void setup() {
   for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
@@ -50,10 +54,11 @@ void setup() {
 }
 
 void loop() {
-  darkVar = darkSense();
+darkSense();
   touchSense(); // call the function "touchSense" and put the result in touched
   logic(); // call the function "logic"
   anime01(); // call the function "fade"
   updateLED();
+ // debug();
 }
 
