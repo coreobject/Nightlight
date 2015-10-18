@@ -11,6 +11,7 @@ int darkThreshold = 400;
 int ledState;
 int ledSpeed = 600; // Speed at which the LEDs animate.
 byte maxBrightness = 0; // Maximum brightness for LEDs.
+int onoffSpeed = 3; // Speed to turn the lights on/off.
 byte ledsVal[] = {255, 255, 255, 255, 255, 255}; // The brightness value of all of the pins.
 byte ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
 byte ledsDecay[] = {1,1,1,1,1,1}; // and decrease

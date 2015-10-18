@@ -30,10 +30,10 @@ int debug() { // receive a variable when called and put it into "x"
 int updateLED() {
     switch (lightVar) {
         case (0):
-            if (maxBrightness > 0) maxBrightness--;
+            if (maxBrightness > 0) maxBrightness = maxBrightness - onoffSpeed;
             break;
         case (1):
-            if (maxBrightness < 255) maxBrightness++;
+            if (maxBrightness < 255) maxBrightness = maxBrightness + onoffSpeed;
             break;
     }
             unsigned long currentMillis = millis();
