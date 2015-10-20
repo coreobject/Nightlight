@@ -9,19 +9,20 @@ int darkThreshold = 400;
 
 // Set up LED display
 int ledState;
-int ledSpeed = 600; // Speed at which the LEDs animate.
-byte maxBrightness = 0; // Maximum brightness for LEDs.
+int animeSpeed = 1000; // Speed at which the LEDs animate.
+int maxBrightness = 0; // Maximum brightness for LEDs. Used for fading on and off the light.
 int onoffSpeed = 3; // Speed to turn the lights on/off.
-byte ledsVal[] = {255, 255, 255, 255, 255, 255}; // The brightness value of all of the pins.
-byte ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
-byte ledsDecay[] = {1,1,1,1,1,1}; // and decrease
-byte ledsDir[] = {0, 0, 0, 0, 0, 0};
+int ledsVal[] = {1000, 1000, 1000, 1000, 1000, 1000}; // The brightness value of all of the pins.
+int ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
+int ledsDecay[] = {1,1,1,1,1,1}; // and decrease
+int ledsDir[] = {0, 0, 0, 0, 0, 0};
 /*
  * You can set a behavior for an LED.
  * 0 = fade out or stay off.
  * 1 = fade off and on starting upwards.
  * 2 = fade off and on starting downwards.
  * 3 = fade up or stay on.
+ * 4 = stay at current value.
  * Example:
  * ledsVal[2] = 127;
  * ledsDir[2] = 3;

@@ -4,7 +4,7 @@ int logic() {
             lightVar = 0;
             digitalWrite(ledPin, LOW);
             if (touched == 1) {
-            lightVar = !lightVar;
+                lightVar = !lightVar;
                 stateVar = 1;
                 Serial.println("State 1");
                 touched = 2;
@@ -23,7 +23,7 @@ int logic() {
         case (2): // night time lights on
             lightVar = 1;
             if (touched == 1) {
-            lightVar = !lightVar;
+                lightVar = !lightVar;
                 stateVar = 1;
                 Serial.println("State 1");
                 touched = 2;
