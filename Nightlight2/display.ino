@@ -13,15 +13,20 @@ int anime01() { // a function to reduce the brightness of leds so they fade out.
 int anime02() {
     int currentTime = millis(); // check the time
     if (currentTime - prevLedTime >= animeSpeed) { //if enough time has gone by:
+        Serial.println(ledState);
         if (ledState == 3) ledState = 0;
         switch (ledState) {
             case 0:
                 for (int i = 0; i < 6; i++) {
                     ledsVal[i] = 1000 / 6 * i;
+                    ledsAttack[i] = 20;
+                    ledsDecay[i] = 20;
                     ledsDir[i] = 1;
                 }
                 break;
             case 1:
+                break;
+            case 2:
                 ledsDir[0] = 3;
                 ledsDir[1] = 3;
                 ledsDir[2] = 3;
@@ -29,7 +34,7 @@ int anime02() {
                 ledsDir[4] = 0;
                 ledsDir[5] = 0;
                 break;
-            case 2:
+            case 3:
                 long randomNumber = random(6);
                 ledsDir[randomNumber] = 1;
                 ledsAttack[randomNumber] = 50;
@@ -37,6 +42,7 @@ int anime02() {
                 break;
         }
         prevLedTime = currentTime;
+        ledState++;
     }
 }
 
@@ -77,12 +83,18 @@ int updateLED() {
                     if (ledsVal[i] > 0) ledsVal[i] = ledsVal[i] - ledsDecay[i];
                     break;
                 case 1: // fading up and down - up
-                    ledsVal[i]++;
-                    if (ledsVal[i] >= 1000) ledsDir[i] = 2;
+                    ledsVal[i] =ledsVal[i] + ledsAttack[i];
+                    if (ledsVal[i] >= 1000) {
+                        ledsDir[i] = 2;
+                        ledsVal[i] = 1000;
+            }
                     break;
                 case 2: // fading up and down - down
-                    ledsVal[i]--;
-                    if (ledsVal[i] <= 0) ledsDir[i] = 1;
+                    ledsVal[i] = ledsVal[i] - ledsDecay[i];
+                    if (ledsVal[i] <= 0) {
+                        ledsDir[i] = 1;
+                        ledsVal[i] = 0;
+                    }
                     break;
                 case 3: // stay at 1000 or fade up to 1000
                     if (ledsVal[i] < 1000) ledsVal[i] = ledsVal[i] + ledsAttack[i];
@@ -95,7 +107,7 @@ int updateLED() {
             analogWrite(leds[i], x);
             fadePreviousMillis = currentMillis;
         }
-            Serial.println(ledsVal[1]);
+           // Serial.println(ledsVal[1]);
     }
 }
 

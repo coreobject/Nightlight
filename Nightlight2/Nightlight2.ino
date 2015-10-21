@@ -9,12 +9,12 @@ int darkThreshold = 400;
 
 // Set up LED display
 int ledState;
-int animeSpeed = 1000; // Speed at which the LEDs animate.
+int animeSpeed = 6000; // Speed at which the LEDs animate.
 int maxBrightness = 0; // Maximum brightness for LEDs. Used for fading on and off the light.
 int onoffSpeed = 3; // Speed to turn the lights on/off.
-int ledsVal[] = {1000, 1000, 1000, 1000, 1000, 1000}; // The brightness value of all of the pins.
-int ledsAttack[] = {5,5,5,5,5,5}; // Each LED can have its own increase speed
-int ledsDecay[] = {1,1,1,1,1,1}; // and decrease
+int ledsVal[] = {0, 0, 0, 0, 0, 0}; // The brightness value of all of the pins.
+int ledsAttack[] = {20,20,20,20,20,20}; // Each LED can have its own increase speed
+int ledsDecay[] = {20,20,20,20,20,20}; // and decrease
 int ledsDir[] = {0, 0, 0, 0, 0, 0};
 /*
  * You can set a behavior for an LED.
@@ -59,7 +59,7 @@ void loop() {
 darkSense();
   touchSense(); // call the function "touchSense" and put the result in touched
   logic(); // call the function "logic"
-  anime01(); // call the function "fade"
+  anime02(); // call the function "fade"
   updateLED();
  // debug();
 }
