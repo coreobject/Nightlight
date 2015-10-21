@@ -10,6 +10,7 @@ int logic() {
                 touched = 2;
             } else if (darkState == 1) {
                 stateVar = 2;
+                Serial.println("State 2");
             }
             break;
         case (1): // touched
@@ -29,6 +30,7 @@ int logic() {
                 touched = 2;
             } else if (darkState == 0) {
                 stateVar = 0;
+                Serial.println("State 0");
             }
     }
 }

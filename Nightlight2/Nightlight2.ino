@@ -5,14 +5,16 @@ long touchThreshold = 1000; // What the touch sensor must pass to register a tou
 
 // Set up the photo sensor
 int darkState;
-int darkThreshold = 400;
+int darkThreshold = 600;
 
 // Set up LED display
-int ledState;
-int animeSpeed = 6000; // Speed at which the LEDs animate.
+int ledState; // Determines which frame of the animation.
+int animeSpeed = 6000; // Speed at which the LEDs change frames.
 int maxBrightness = 0; // Maximum brightness for LEDs. Used for fading on and off the light.
-int onoffSpeed = 3; // Speed to turn the lights on/off.
+int onoffSpeed = 2; // Speed to turn the lights on/off.
 int ledsVal[] = {0, 0, 0, 0, 0, 0}; // The brightness value of all of the pins.
+int ledsMax[] = {1000, 1000, 1000, 1000, 1000, 1000}; // What each LED will fade up to.
+int ledsMin[] = {5, 5, 5, 5, 5, 5}; // What each LED will fade down to.
 int ledsAttack[] = {20,20,20,20,20,20}; // Each LED can have its own increase speed
 int ledsDecay[] = {20,20,20,20,20,20}; // and decrease
 int ledsDir[] = {0, 0, 0, 0, 0, 0};
@@ -40,16 +42,17 @@ int prevLedTime; // a variable for the fade timing
 // Variables for logic
 int i; // a variable later use in the logic
 int prevTime; // a variable for the logic timing
-int interval = 500; // length of time for logic time
-int touched;
-int stateVar;
-boolean lightVar;
+int interval = 500; // length of time for logic time (unused so far)
+int touched; // Just touched?
+int stateVar; // State of the light
+boolean lightVar; // Lights on?
 
 void setup() {
   for (int thisPin = 0; thisPin < pinCount; thisPin++) { // set the 6 led pins to output
     pinMode(leds[thisPin], OUTPUT);
   }
   pinMode(ledPin, OUTPUT); // set the debug led to output
+randomSeed(analogRead(1)); // used for the random function in one of the animations.
   Serial.begin(9600);
   Serial.println();
  // debug();
@@ -60,7 +63,7 @@ darkSense();
   touchSense(); // call the function "touchSense" and put the result in touched
   logic(); // call the function "logic"
   anime02(); // call the function "fade"
-  updateLED();
+  updateLED(); // changes the leds based on the commands you set in anime()
  // debug();
 }
 
